@@ -2,8 +2,11 @@ module.exports = compile
 
 var jade = require('jade')
   , fs = require('fs')
+  , path = require('path')
 
-function compile(filename) {
+function compile(filename, baseDir) {
+
+  if (baseDir) filename = path.join(baseDir, filename)
 
   /* jshint evil:true */
 

@@ -27,6 +27,12 @@ describe('browjadify', function () {
       assert.deepEqual([ __dirname + '/fixtures/d.jade' ], template.dependencies)
     })
 
+    it('should allow a baseDir to be set', function () {
+      var template = compile('a.jade', __dirname + '/fixtures')
+      assert.equal(typeof template, 'function')
+      assert(/^function (anonymous|template)\(locals/.test(template.toString()))
+      assert(/^<!DOCTYPE html>/.test(template()))
+    })
   })
 
   describe('package.json', function () {
